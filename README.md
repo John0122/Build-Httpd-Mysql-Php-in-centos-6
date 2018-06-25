@@ -19,20 +19,20 @@ sudo systemctl start nginx
 sudo systemctl enable nginx
 ```
 
-### 安装mysql
+### 安装mariadb
 
 ```bash
 sudo yum install mariadb-server mariadb -y
 ```
 
-### 启动mysql 设置开机启动
+### 启动mariadb 设置开机启动
 
 ```bash
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 ```
 
-### 配置mysql
+### 配置mariadb
 
 ```bash
 1.打开数据库
