@@ -1,9 +1,9 @@
-# 配置天网云nginx+php+mysql
+# 配置nginx+php+mysql
 
 ### 配置 nginx yum 源
 
 ```bash
-sudo yum install epel-release
+sudo yum install epel-release -y
 ```
 
 ### 安装 nginx
@@ -17,6 +17,7 @@ sudo yum install nginx -y
 ```bash
 sudo systemctl start nginx
 sudo systemctl enable nginx
+sudo systemctl restart nginx
 ```
 
 ### 安装mariadb
@@ -30,6 +31,7 @@ sudo yum install mariadb-server mariadb -y
 ```bash
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
+sudo systemctl restart mariadb
 ```
 
 ### 配置mariadb
@@ -45,6 +47,9 @@ update user set password=password('密码') where user='root';
 flush privileges;
 5.设置远程访问
 grant all privileges on *.* to 'root'@'%' identified by '密码' with grant option;
+6.修改端口
+vi /etc/my.conf
+[mysqld]下面添加：port=33066
 ```
 
 ### 安装php 7
@@ -53,22 +58,15 @@ grant all privileges on *.* to 'root'@'%' identified by '密码' with grant opti
 1.下载php7 yum源
 sudo yum install php php-mysql php-fpm -y
 2.安装php7 yum源
-yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
+sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 3.安装yum-conifg-manager
 sodu yum install yum-utils -y
 4.配置php7
-yum-config-manager --enable remi-php72
+sudo yum-config-manager --enable remi-php72
 5.安装php7
-yum --enablerepo=remi,remi-php72 install php-fpm php-common -y --skip-broken
+sudo yum --enablerepo=remi,remi-php72 install php-fpm php-common -y --skip-broken
 6.安装php7扩展包
-yum --enablerepo=remi,remi-php72 install php-opcache php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
-```
-
-### 启动php 设置开机启动
-
-```bash
-sudo systemctl start php-fpm
-sudo systemctl enable php-fpm
+sudo yum --enablerepo=remi,remi-php72 install php-opcache php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
 ```
 
 ### 配置PHP
@@ -77,7 +75,7 @@ sudo systemctl enable php-fpm
 1.打开配置文件
 sudo vi /etc/php.ini
 2.修改
-cgi.fix_pathinfo=1 -> cgi.fix_pathinfo=0
+;cgi.fix_pathinfo=1 -> cgi.fix_pathinfo=0
 3.保存修改并退出编辑
 ```
 
@@ -85,13 +83,21 @@ cgi.fix_pathinfo=1 -> cgi.fix_pathinfo=0
 1.打开配置文件
 sudo vi /etc/php-fpm.d/www.conf
 2.修改
-listen = 127.0.0.1:9000 -> listen = /var/run/php-fpm/php-fpm.sock=
+user = apache -> user = nginx
+group = apache -> group = nginx
+listen = 127.0.0.1:9000 -> listen = /var/run/php-fpm/php-fpm.sock
 ;listen.owner = nobody -> listen.owner = nginx
 ;listen.group = nobody -> listen.group = nginx
 ;listen.mode = 0660 -> listen.mode = 0660
-user = apache -> user = nginx
-group = apache -> group = nginx
 3.保存修改并退出编辑
+```
+
+### 启动php 设置开机启动
+
+```bash
+sudo systemctl start php-fpm
+sudo systemctl enable php-fpm
+sudo systemctl restart php-fpm
 ```
 
 ### 安装CGI
