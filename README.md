@@ -51,15 +51,15 @@ grant all privileges on *.* to 'root'@'%' identified by '密码' with grant opti
 
 ```bash
 1.下载php7 yum源
-sudo yum install php php-mysql php-fpm
+sudo yum install php php-mysql php-fpm -y
 2.安装php7 yum源
-sudo rpm -Uvh remi-release-7.rpm
+yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 3.安装yum-conifg-manager
 sodu yum install yum-utils -y
 4.配置php7
 yum-config-manager --enable remi-php72
 5.安装php7
-yum --enablerepo=remi,remi-php72 install php-fpm php-common -y
+yum --enablerepo=remi,remi-php72 install php-fpm php-common -y --skip-broken
 6.安装php7扩展包
 yum --enablerepo=remi,remi-php72 install php-opcache php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
 ```
@@ -85,9 +85,10 @@ cgi.fix_pathinfo=1 -> cgi.fix_pathinfo=0
 1.打开配置文件
 sudo vi /etc/php-fpm.d/www.conf
 2.修改
-listen = 127.0.0.1:9000 -> listen = /var/run/php-fpm/php-fpm.sock
-;listen.owner = nobody -> listen.owner = nobody
-;listen.group = nobody -> listen.group = nobody
+listen = 127.0.0.1:9000 -> listen = /var/run/php-fpm/php-fpm.sock=
+;listen.owner = nobody -> listen.owner = nginx
+;listen.group = nobody -> listen.group = nginx
+;listen.mode = 0660 -> listen.mode = 0660
 user = apache -> user = nginx
 group = apache -> group = nginx
 3.保存修改并退出编辑
