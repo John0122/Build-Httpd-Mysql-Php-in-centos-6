@@ -1,0 +1,2 @@
+vi /etc/yum.conf
+proxy=http://192.168.1.186:20020
