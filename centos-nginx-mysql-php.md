@@ -48,8 +48,10 @@ flush privileges;
 5.设置远程访问
 grant all privileges on *.* to 'root'@'%' identified by '密码' with grant option;
 6.修改端口
-vi /etc/my.conf
+vi /etc/my.cnf
 [mysqld]下面添加：port=33066
+7.重启mysql
+sudo systemctl restart mariadb
 ```
 
 ### 安装php 7
