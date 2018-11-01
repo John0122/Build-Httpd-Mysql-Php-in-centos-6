@@ -52,22 +52,29 @@ vi /etc/my.cnf
 [mysqld]下面添加：port=33066
 7.重启mysql
 sudo systemctl restart mariadb
+8.设置编码
+set character_set_client = utf8;
+set character_set_server = utf8;
+set character_set_connection = utf8;
+set character_set_database = utf8;
+set character_set_results = utf8;
+set collation_connection = utf8_general_ci;
+set collation_database = utf8_general_ci;
+set collation_server = utf8_general_ci;
 ```
 
 ### 安装php 7
 
 ```bash
-1.下载php7 yum源
-sudo yum install php php-mysql php-fpm -y
-2.安装php7 yum源
+1.安装php7 yum源
 sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
-3.安装yum-conifg-manager
+2.安装yum-conifg-manager
 sodu yum install yum-utils -y
-4.配置php7
+3.配置php7
 sudo yum-config-manager --enable remi-php72
-5.安装php7
+4.安装php7
 sudo yum --enablerepo=remi,remi-php72 install php-fpm php-common -y --skip-broken
-6.安装php7扩展包
+5.安装php7扩展包
 sudo yum --enablerepo=remi,remi-php72 install php-opcache php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
 ```
 
