@@ -100,5 +100,7 @@
 |netstat -ntlp|查看端口使用情况|
 
 ### 证书
+```bash
 计算证书MD5值：openssl x509 -noout -modulus -in private.crt |openssl md5
 计算秘钥MD5值：openssl rsa -noout -modulus -in private.key |openssl md
+```
