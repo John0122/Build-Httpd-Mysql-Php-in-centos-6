@@ -98,3 +98,7 @@
 |iwlist scan|显示无线网络|
 |ip addr show|显示网卡的IP地址|
 |netstat -ntlp|查看端口使用情况|
+
+
+计算证书MD5值：openssl x509 -noout -modulus -in private.crt |openssl md5
+计算秘钥MD5值：openssl rsa -noout -modulus -in private.key |openssl md
