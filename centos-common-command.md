@@ -1,3 +1,15 @@
+
+### 证书
+```bash
+计算证书MD5值：openssl x509 -noout -modulus -in private.crt |openssl md5
+计算秘钥MD5值：openssl rsa -noout -modulus -in private.key |openssl md
+```
+### 时间
+```bash
+查看时间：timedatectl
+修改时区：timedatectl set-timezone Asia/Shanghai
+```
+
 # 常用命令
 
 ### 文件与目录操作
@@ -99,11 +111,3 @@
 |ip addr show|显示网卡的IP地址|
 |netstat -ntlp|查看端口使用情况|
 
-### 证书
-```bash
-计算证书MD5值：openssl x509 -noout -modulus -in private.crt |openssl md5
-计算秘钥MD5值：openssl rsa -noout -modulus -in private.key |openssl md
-```
-###时间
-查看时间：timedatectl
-修改时区：timedatectl set-timezone Asia/Shanghai
