@@ -104,3 +104,6 @@
 计算证书MD5值：openssl x509 -noout -modulus -in private.crt |openssl md5
 计算秘钥MD5值：openssl rsa -noout -modulus -in private.key |openssl md
 ```
+###时间
+查看时间：timedatectl
+修改时区：timedatectl set-timezone Asia/Shanghai
