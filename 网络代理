@@ -1,7 +1,9 @@
-Centos：
+### Centos
+```bash
 vi /etc/yum.conf
 proxy=http://192.168.1.186:20020
 systemctl restart network
+```
 
 Mac：
 禁用IPv6
