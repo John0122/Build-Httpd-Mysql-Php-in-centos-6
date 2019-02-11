@@ -1,3 +1,7 @@
+### 安装
+```bash
+killall：yum install psmisc -y
+```
 
 ### 证书
 ```bash
