@@ -1,5 +1,6 @@
 ### 安装
 ```bash
+ifconfig：yum install net-tools -y
 killall：yum install psmisc -y
 ```
 
