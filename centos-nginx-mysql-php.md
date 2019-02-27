@@ -73,7 +73,7 @@ sodu yum install yum-utils -y
 3.配置php7
 sudo yum-config-manager --enable remi-php72
 4.安装php7及扩展包
-sudo yum --enablerepo=remi,remi-php72 install php php-fpm php-common php-opcache php-pear php-pdo php-mysqlnd php-pgsql php-pecl-apcu php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y --skip-broken
+sudo yum --enablerepo=remi,remi-php72 install php php-fpm php-common php-mysql php-mysqlnd php-pgsql php-opcache php-pear php-pdo php-pecl-apcu php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y --skip-broken
 ```
 
 ### 配置PHP
