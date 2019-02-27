@@ -2,6 +2,7 @@
 ```bash
 ifconfig：yum install net-tools -y
 killall：yum install psmisc -y
+rz sz：yum install lrzsz -y
 ```
 
 ### 证书
