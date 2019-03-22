@@ -15,6 +15,10 @@ rz sz：yum install lrzsz -y
 查看时间：timedatectl
 修改时区：timedatectl set-timezone Asia/Shanghai
 ```
+### 命令
+```bash
+修改host：sudo vi /etc/hosts
+```
 
 # 常用命令
 
