@@ -3,35 +3,35 @@
 ### 配置 nginx yum 源
 
 ```bash
-sudo yum install epel-release -y
+yum install epel-release -y
 ```
 
 ### 安装 nginx
 
 ```bash
-sudo yum install nginx -y
+yum install nginx -y
 ```
 
 ### 启动nginx 设置开启启动
 
 ```bash
-sudo systemctl start nginx
-sudo systemctl enable nginx
-sudo systemctl restart nginx
+systemctl start nginx
+systemctl enable nginx
+systemctl restart nginx
 ```
 
 ### 安装mariadb
 
 ```bash
-sudo yum install mariadb-server mariadb -y
+yum install mariadb-server mariadb -y
 ```
 
 ### 启动mariadb 设置开机启动
 
 ```bash
-sudo systemctl start mariadb
-sudo systemctl enable mariadb
-sudo systemctl restart mariadb
+systemctl start mariadb
+systemctl enable mariadb
+systemctl restart mariadb
 ```
 
 ### 配置mariadb
@@ -42,11 +42,11 @@ mysql -uroot -p (会提示输入密码，直接回车就可以)
 2.打开mysql库
 use mysql;
 3.修改密码
-update user set password=password('密码') where user='root';
+update user set password=password('password') where user='root';
 4.应用修改
 flush privileges;
 5.设置远程访问
-grant all privileges on *.* to 'root'@'%' identified by '密码' with grant option;
+grant all privileges on *.* to 'root'@'%' identified by 'password' with grant option;
 6.修改端口
 vi /etc/my.cnf
 [mysqld]下面添加：port=33066
@@ -67,21 +67,26 @@ set collation_server = utf8_general_ci;
 
 ```bash
 1.安装php7 yum源
-sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
+yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 2.安装yum-conifg-manager
-sodu yum install yum-utils -y
+yum install yum-utils -y
 3.配置php7
-sudo yum-config-manager --enable remi-php72
+yum-config-manager --enable remi-php72
 4.安装php7及扩展包
-sudo yum --enablerepo=remi,remi-php72 install php php-fpm php-common php-mysqlnd php-pgsql php-opcache php-pear php-pdo php-mbstring php-pecl-apcu php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mcrypt php-xml -y --skip-broken
-yum install php-mysql php-gd php-mbstring php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc -y
+yum \
+--enablerepo=remi,remi-php72 \
+--skip-broken \
+install \
+php php-fpm php-common php-mysqlnd php-mysql php-pgsql php-opcache php-odbc \
+php-pear php-pdo php-mbstring php-gd php-imap php-ldap php-xml php-xmlrpc \
+php-pecl-apcu php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mcrypt php-xml -y
 ```
 
 ### 配置PHP
 
 ```bash
 1.打开配置文件
-sudo vi /etc/php.ini
+vi /etc/php.ini
 2.修改
 ;cgi.fix_pathinfo=1 -> cgi.fix_pathinfo=0
 3.保存修改并退出编辑
@@ -89,7 +94,7 @@ sudo vi /etc/php.ini
 
 ```hash
 1.打开配置文件
-sudo vi /etc/php-fpm.d/www.conf
+vi /etc/php-fpm.d/www.conf
 2.修改
 user = apache -> user = nginx
 group = apache -> group = nginx
@@ -103,9 +108,9 @@ listen = 127.0.0.1:9000 -> listen = /var/run/php-fpm/php-fpm.sock
 ### 启动php 设置开机启动
 
 ```bash
-sudo systemctl start php-fpm
-sudo systemctl enable php-fpm
-sudo systemctl restart php-fpm
+systemctl start php-fpm
+systemctl enable php-fpm
+systemctl restart php-fpm
 ```
 
 ### 安装CGI
