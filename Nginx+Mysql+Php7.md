@@ -92,7 +92,7 @@ yum \
 --skip-broken \
 install \
 php \
-php-fpm php-common 
+php-fpm php-common \
 php-mysqlnd php-mysql php-pgsql php-opcache php-odbc \
 php-pear php-pdo php-gd php-mbstring php-mcrypt \
 php-xml php-imap php-ldap php-xmlrpc php-zip \
