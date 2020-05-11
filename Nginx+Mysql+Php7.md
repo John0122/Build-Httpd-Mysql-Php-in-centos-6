@@ -40,21 +40,29 @@ systemctl restart mariadb
 ```bash
 1.打开数据库
 mysql -uroot -p (会提示输入密码，直接回车就可以)
+
 2.打开mysql库
 use mysql;
+
 3.修改密码
 update user set password=password('password') where user='root';
+
 4.应用修改
 flush privileges;
+
 5.设置远程访问
 grant all privileges on *.* to 'root'@'%' identified by 'password' with grant option;
+
 6.应用修改
 flush privileges;
+
 7.修改端口
 vi /etc/my.cnf
 [mysqld]下面添加：port=33066
+
 8.重启mysql
 sudo systemctl restart mariadb
+
 9.设置编码
 set character_set_client = utf8;
 set character_set_server = utf8;
@@ -71,10 +79,13 @@ set collation_server = utf8_general_ci;
 ```bash
 1.安装php7 yum源
 yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
+
 2.安装yum-conifg-manager
 yum install yum-utils -y
+
 3.配置php7
 yum-config-manager --enable remi-php72
+
 4.安装php7及扩展包
 yum \
 --enablerepo=remi,remi-php72 \
@@ -94,14 +105,15 @@ php-pecl-apcu php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcach
 ```bash
 1.打开配置文件
 vi /etc/php.ini
+
 2.修改
 ;cgi.fix_pathinfo=1 -> cgi.fix_pathinfo=0
-3.保存修改并退出编辑
 ```
 
 ```hash
 1.打开配置文件
 vi /etc/php-fpm.d/www.conf
+
 2.修改
 user = apache -> user = nginx
 group = apache -> group = nginx
@@ -109,7 +121,6 @@ listen = 127.0.0.1:9000 -> listen = /var/run/php-fpm/php-fpm.sock
 ;listen.owner = nobody -> listen.owner = nginx
 ;listen.group = nobody -> listen.group = nginx
 ;listen.mode = 0660 -> listen.mode = 0660
-3.保存修改并退出编辑
 ```
 
 ### 启动php 设置开机启动
