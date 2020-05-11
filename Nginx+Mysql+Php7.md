@@ -48,12 +48,14 @@ update user set password=password('password') where user='root';
 flush privileges;
 5.设置远程访问
 grant all privileges on *.* to 'root'@'%' identified by 'password' with grant option;
-6.修改端口
+6.应用修改
+flush privileges;
+7.修改端口
 vi /etc/my.cnf
 [mysqld]下面添加：port=33066
-7.重启mysql
+8.重启mysql
 sudo systemctl restart mariadb
-8.设置编码
+9.设置编码
 set character_set_client = utf8;
 set character_set_server = utf8;
 set character_set_connection = utf8;
@@ -72,10 +74,10 @@ yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 2.安装yum-conifg-manager
 yum install yum-utils -y
 3.配置php7
-yum-config-manager --enable remi-php72
+yum-config-manager --enable remi-php74
 4.安装php7及扩展包
 yum \
---enablerepo=remi,remi-php72 \
+--enablerepo=remi,remi-php74 \
 --skip-broken \
 install \
 php php-fpm php-common php-mysqlnd php-mysql php-pgsql php-opcache php-odbc \
