@@ -74,15 +74,25 @@ yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 2.安装yum-conifg-manager
 yum install yum-utils -y
 3.配置php7
-yum-config-manager --enable remi-php74
+yum-config-manager --enable remi-php72
 4.安装php7及扩展包
 yum \
---enablerepo=remi,remi-php74 \
+--enablerepo=remi,remi-php72 \
 --skip-broken \
 install \
-php php-fpm php-common php-mysqlnd php-mysql php-pgsql php-opcache php-odbc \
-php-pear php-pdo php-mbstring php-gd php-imap php-ldap php-xml php-xmlrpc \
-php-pecl-apcu php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mcrypt php-xml -y
+php php-fpm php-common php-mysqlnd \
+php-mysql php-pgsql php-opcache php-odbc \
+php-pear \
+php-pdo \
+php-mbstring \
+php-gd \
+php-mcrypt \
+php-xml \
+php-imap \
+php-ldap \
+php-xmlrpc \
+php-pecl-apcu php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached \
+-y
 ```
 
 ### 配置PHP
